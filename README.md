@@ -1,4 +1,6 @@
-# stigops-AI
+# INCRAM
+
+Repository: github.com/wiredFRONT/INCRAM. Planning name during research: stigops-AI.
 
 Umbrella project for a normalized, machine-readable library of standards, standard operating procedures and practices for AI-assisted software development, and for **MCPL**, the schema-governed framework that lets an application act as its own subject-matter expert for any AI.
 
@@ -6,12 +8,12 @@ Umbrella project for a normalized, machine-readable library of standards, standa
 
 ## What this is
 
-- **The library (stigops-AI).** Practices collated from official sources into one rule format, organized in four layers that inherit from each other:
+- **The library.** Practices collated from official sources into one rule format, organized in four layers that inherit from each other:
   1. AI and general AI usage
   2. General software development
   3. Project stack
   4. Dependencies and hosting (self-hosted or managed)
-- **MCPL.** An application publishes a governed schema of itself (inputs, actions, rules, workflows, screens). A person speaks plainly, the AI proposes a structured result, and the schema validates it before anything is applied. MCPL will live in its own repository and link here as an optional submodule.
+- **MCPL.** An application publishes a governed schema of itself (inputs, actions, rules, workflows, screens). A person speaks plainly, the AI proposes a structured result, and the schema validates it before anything is applied. MCPL lives in its own repository, github.com/wiredFRONT/MCPL, linked here as an optional submodule at `modules/mcpl`.
 
 The structure is modeled on how DISA SRGs and STIGs work: a vendor-neutral base, product-specific guides that inherit from it, tailored profiles, traceable citations, and machine-checkable rules. It never restricts the AI; it gives it a reliable, grouped source to work from.
 
@@ -35,6 +37,7 @@ The structure is modeled on how DISA SRGs and STIGs work: a vendor-neutral base,
 | `docs/research/` | Research runs R1 (umbrella baseline) and R2 (MCPL crosswalk) |
 | `schema/` | Rule and profile schemas. Not yet written (pass 0) |
 | `registry/` | Central ID registry. Not yet written |
+| `modules/mcpl` | Optional submodule: the MCPL repository |
 
 ## What happens next
 
@@ -46,6 +49,6 @@ The structure is modeled on how DISA SRGs and STIGs work: a vendor-neutral base,
 
 ## Notes
 
-- This repository is private while the contents are reviewed. The decision on record is that the umbrella is public.
+- Public since 2026-11-12 under the wiredFRONT organization. The MCPL repository is private until reviewed, so the submodule is optional and a clone works without it.
 - Tailored content derived from DISA STIGs or SRGs is always marked as derived, keeps the original rule ID, and carries no DISA approval.
 - Nothing here is legal advice.

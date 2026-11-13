@@ -37,6 +37,8 @@ Last updated 2026-11-12. This ledger is authoritative where it differs from any 
 | D30 | Inside each repo: one rule, one folder, with its text, check, test, fixtures and history co-located | 2026-11-12 |
 | D31 | One clear, centralized list of official sources is the baseline. Coverage, directories, fan sites and forks are not sources | 2026-11-12 |
 | D32 | MCPL is an API / framework that makes an application its own subject-matter expert through a governed schema (see docs/vision/mcpl-vision.md) | 2026-11-12 |
+| D33 | The umbrella lives in its own organization as github.com/wiredFRONT/INCRAM, public. (Planning name: stigops-AI.) MCPL is github.com/wiredFRONT/MCPL | 2026-11-12 |
+| D34 | MCPL must clearly collapse the existing standards, then extend with our framework, to normalize and be easily adoptable by AI. Repository shape: upstream / core / extensions / routes / examples | 2026-11-12 |
 
 ## Context (Jesse)
 - Jesse co-authored more than 14 Windows and Linux DISA STIGs. He is the primary source on STIG mechanics, licensing and DISA process.
@@ -103,7 +105,7 @@ Last updated 2026-11-12. This ledger is authoritative where it differs from any 
 |---|---|
 | O8 | Rule on the research corrections above (accept, change or reject each) |
 | O9 | Run the second-model cross-check on R1 and R2 before pass 0 (schema), or start pass 0 in parallel |
-| O10 | Which GitHub owner the umbrella should live under long term, and when it goes public |
+| O10 | What INCRAM stands for, so the README and documents can use the name properly |
 
 ## Later, not blocking
 | # | Item |

@@ -1,0 +1,3 @@
+[submodule "modules/mcpl"]
+	path = modules/mcpl
+	url = https://github.com/wiredFRONT/MCPL.git
