@@ -1,6 +1,6 @@
 # Decisions and opens ledger
 
-Last updated 2026-11-12. This ledger is authoritative where it differs from any other document.
+Last updated 2026-11-13. This ledger is authoritative where it differs from any other document.
 
 ## Decided (Jesse)
 | # | Decision | Date |
@@ -48,6 +48,15 @@ Last updated 2026-11-12. This ledger is authoritative where it differs from any 
 | D41 | CRANIUM content lives in the same library and schema as the base, switched on by configuration, not kept as a separate product (closes O11) | 2026-11-12 |
 | D42 | Layers and domains are two axes: every rule carries both a layer and a domain, so governance can attach by domain across all four layers (closes O10) | 2026-11-12 |
 | D43 | A second-model cross-check of R1, R2 and the rule field list runs before the JSON Schema is written (closes O9) | 2026-11-12 |
+| D44 | The problem INCRAM answers: users are sold the false promise that typing "make it better" over and over gets them something secure, with every layer mapped and able to scale, whether infrastructure, code or host. Getting AI to its full potential requires a strong understanding of how it works | 2026-11-13 |
+| D45 | INCRAM becomes more than a repository: AI consulting, with products that rival training, built by reverse engineering what the existing offerings do and applying Jesse's STIG, SRG and standard operating procedure expertise | 2026-11-13 |
+| D46 | Severity works as it does in real life. CAT I must be satisfied regardless. The checks must actually be done. The only alternative is a proven mitigation, by proven methods, that brings it down to CAT II, because of the risk CAT I represents | 2026-11-13 |
+| D47 | A well-organized series of repositories, all interconnected, so an AI has one reliable organized source. All MCPL protocols are woven together into templates that bring them together as a standard | 2026-11-13 |
+| D48 | No restricting the AI and no over-governance. Nothing happens behind the scenes without the user's awareness: everything is represented through clear configurations | 2026-11-13 |
+| D49 | The library crawls itself repeatedly. Every item is updated and reviewed at least once a year. The most recent material sits in its own section and moves out over time, as in the real world. Decades of CVE and DISA lessons learned are folded in | 2026-11-13 |
+| D50 | Dynamic triggers: when a linked source changes, the UI notifies the user. When an alternative starts to trend, users are told a new standard is available. Example: ArkType versus Zod | 2026-11-13 |
+| D51 | Maturity rule: a technology such as a JavaScript dependency gets its own STIG only after a set number of years proves it mature. Until then it falls under a generalized SRG, and the choice of technology (X or Y) is a configuration of that SRG. Platform STIGs (Debian, Windows 11) still apply | 2026-11-13 |
+| D52 | Everything is tailored for three tiers: foundational, managed, advanced | 2026-11-13 |
 
 ## Context (Jesse)
 - Jesse co-authored more than 14 Windows and Linux DISA STIGs. He is the primary source on STIG mechanics, licensing and DISA process.
@@ -113,6 +122,9 @@ Last updated 2026-11-12. This ledger is authoritative where it differs from any 
 | # | Question |
 |---|---|
 | O8 | Rule on the research corrections above (accept, change or reject each) |
+| O12 | How the three tiers (D52) relate to the base and CRANIUM configurations (D36, D41) |
+| O13 | What CAT I "must be satisfied regardless" (D46) gates, given D3 (never restricts the AI) and D6 (default advice is ship the prototype) |
+| O14 | The number of years for the maturity rule (D51) |
 
 ## Later, not blocking
 | # | Item |
@@ -136,3 +148,4 @@ Last updated 2026-11-12. This ledger is authoritative where it differs from any 
 | L18 | Hands-on test per host: does the server's guidance text reach the AI |
 | L19 | Listing in a skills directory alongside the MCP registry |
 | L20 | Compare Jesse's other AI builds of MCPL against the research |
+| L21 | Scope and timing of the consulting and training-rival products (D45), relative to the build order in D39 |
