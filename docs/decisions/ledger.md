@@ -65,7 +65,7 @@ Last updated 2026-11-13. This ledger is authoritative where it differs from any 
 ## Research runs
 | # | Run | Status |
 |---|---|---|
-| R1 | Stigops AI umbrella baseline sources | DONE 2026-11-12. Text in docs/research. Not yet cross-checked |
+| R1 | Stigops AI umbrella baseline sources | DONE 2026-11-12. Text in docs/research. Cross-checked by Codex 2026-11-13: of ten load-bearing claims, 6 consistent, 3 divergent, 1 could not be verified |
 | R2 | MCPL AI interaction specs crosswalk (14 specs, crosswalk table, host matrix, evidence review) | DONE 2026-11-12. Not yet cross-checked |
 
 ## Research corrections awaiting Jesse (R2). His decisions above are unchanged until he rules.
@@ -82,6 +82,16 @@ Last updated 2026-11-13. This ledger is authoritative where it differs from any 
 | Small companion model | Supported: a small fine-tuned classifier. Not shown: a small model tracking a user unattended. The best-known trained small model is the reverse topology (it drives, frontier models are its tools) | Scope the companion to narrow classification |
 | Upkeep cadence | No source gives a calendar interval; guidance is trigger-based. Nobody has measured periodic normalization | State the cadence as our default with event triggers first; treat it as a hypothesis to test |
 | Learning goal | Explanation alone is not shown to teach; gains come when the user does some of the work. Passive UI is supported by interruption studies. The two pull against each other | Run it as an experiment (D26) |
+
+## Cross-check findings awaiting Jesse (R1, Codex 2026-11-13). Full text: docs/research/cross-check/codex-2-R1.md
+| R1 claim | What the second model found at the primary source | Proposed adjustment |
+|---|---|---|
+| OWASP share-alike content must be kept physically separate, in its own repositories, away from paid offerings | CC BY-SA 4.0 requires attribution and same-licence sharing of adaptations. It permits commercial use and collections and prescribes no repository boundary. A per-record licence field alone does not settle database rights | Do not choose repository architecture from this. Keep the per-record licence field; get the packaging question answered properly (L2) |
+| No upstream offers a push channel | NIST offers subscribed email announcements. They are not a machine-readable change feed | Narrow the claim: polling is still required; subscribe to the announcements as an extra signal |
+| No downstream tool automates DISA retrieval or update detection | STIGhub advertises nightly synchronization; stigcli documents downloading the latest compilation. Owner claims, not tested | Drop this as a differentiator; evaluate both before building our own fetcher |
+| Nobody combines the layers and applicability model | Cannot be established by keyword search. CodeGuard overlaps on guidance and MCP delivery; Gemara connects requirements to technical evidence | Treat "unclaimed" as unproven; compare against Gemara and FINOS Common Cloud Controls |
+| XCCDF export is lossy | XCCDF permits arbitrary XML metadata, so custom fields can survive export; standard consumers need not act on them | Already reflected in schema/rule-fields.md revision 2 |
+| OSCAL set aside | Compliance Trestle supports smaller OSCAL structures, Markdown authoring and Git workflows | Prototype one round trip before treating OSCAL as too heavy (A1 stays an assumption) |
 
 ## White space: no upstream exists, MCPL must define
 1. Workflows and chained events (a declared interaction graph for an app)
