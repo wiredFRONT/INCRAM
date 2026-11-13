@@ -9,7 +9,7 @@ Status: DRAFT for Jesse's review. Nothing here is accepted until it is in the le
 | `id` | yes | opaque, permanent, never reused | `Rule/@id` | D18 |
 | `title` | yes | short plain sentence | `Rule/title` | D15 |
 | `layer` | yes | `L1-ai`, `L2-dev`, `L3-stack`, `L4-deps` | `Group` membership | D5 |
-| `domain` | PROVISIONAL | `IN`, `CR`, `A`, `M` | second `Group` axis, or `metadata` | D35, open O10 |
+| `domain` | yes | `IN`, `CR`, `A`, `M` | second `Group` axis, or `metadata` | D35, D42 |
 | `config` | yes | `base`, `cranium` | `Profile` selection (`select/@selected`) | D36, D41 |
 | `severity` | yes | `high`, `medium`, `low` (CAT I, II, III) | `Rule/@severity` | D15 |
 | `status` | yes | `draft`, `accepted`, `deprecated`, `retired` | `Rule/status` | layout rule 5 |
@@ -39,7 +39,6 @@ Status: DRAFT for Jesse's review. Nothing here is accepted until it is in the le
 
 ## Depends on open items
 
-- O10: whether `domain` is required on every rule (two axes) or only on `L1-ai` rules (breakdown).
 - O8: whether `license`, `provenance` and `verification` are added, and whether every field except `name` and `description` moves inside the skill `metadata` field so a rule loads as a skill.
 - ID format (prefix, length, issuing) is still open in the layout document.
 
