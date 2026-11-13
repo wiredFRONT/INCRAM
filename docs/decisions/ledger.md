@@ -40,7 +40,9 @@ Last updated 2026-11-12. This ledger is authoritative where it differs from any 
 | D33 | The umbrella lives in its own organization as github.com/wiredFRONT/INCRAM, public. (Planning name: stigops-AI.) MCPL is github.com/wiredFRONT/MCPL | 2026-11-12 |
 | D34 | MCPL must clearly collapse the existing standards, then extend with our framework, to normalize and be easily adoptable by AI. Repository shape: upstream / core / extensions / routes / examples | 2026-11-12 |
 | D35 | The umbrella is named INCRAM: Inference, Neural, Cognitive, Reasoning, Agentic, Machine. Four domains: Inference / Neural (model serving, quantization baselines, runtime behavior); Cognitive / Reasoning (prompt schemas, decision routing, deterministic logic); Agentic / Autonomous (tool-use scoping, least-privilege permissions, orchestration); Model / Machine (deployment pipelines, lifecycle hygiene, basic guardrails) | 2026-11-12 |
-| D36 | An advanced configuration is offered above the base, adding a Unified dimension. Its public name is parked pending a name check | 2026-11-12 |
+| D36 | The advanced configuration is named CRANIUM: the four domains plus a Unified dimension. Jesse accepts the name overlap with the existing company Cranium AI | 2026-11-12 |
+| D37 | Positioning: open and non-proprietary. INCRAM standardizes and normalizes existing frameworks across AI implementations and architectures, weaving them together rather than focusing on architecture alone | 2026-11-12 |
+| D38 | The structure must leave a clean attachment point for Jesse's reasoning governance engine, to be woven in later | 2026-11-12 |
 
 ## Context (Jesse)
 - Jesse co-authored more than 14 Windows and Linux DISA STIGs. He is the primary source on STIG mechanics, licensing and DISA process.

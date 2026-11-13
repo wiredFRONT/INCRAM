@@ -13,7 +13,9 @@ Repository: github.com/wiredFRONT/INCRAM. Planning name during research: stigops
 | Agentic / Autonomous (A) | Tool-use scoping, least-privilege permissions, and orchestration |
 | Model / Machine (M) | Deployment pipelines, lifecycle hygiene, and basic guardrails |
 
-An advanced configuration adds a Unified dimension across the four.
+The advanced configuration is CRANIUM: the same four domains plus a Unified dimension across them.
+
+INCRAM is open and non-proprietary. It standardizes and normalizes what already exists across AI implementations and architectures; it does not replace them.
 
 Umbrella project for a normalized, machine-readable library of standards, standard operating procedures and practices for AI-assisted software development, and for **MCPL**, the schema-governed framework that lets an application act as its own subject-matter expert for any AI.
 
