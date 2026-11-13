@@ -1,6 +1,19 @@
 # INCRAM
 
+**I**nference, **N**eural, **C**ognitive, **R**easoning, **A**gentic, **M**achine.
+
 Repository: github.com/wiredFRONT/INCRAM. Planning name during research: stigops-AI.
+
+## The four domains
+
+| Domain | Covers |
+|---|---|
+| Inference / Neural (I / N) | Model serving, quantization baselines, and runtime behavior |
+| Cognitive / Reasoning (C / R) | Prompt schemas, decision routing, and deterministic logic |
+| Agentic / Autonomous (A) | Tool-use scoping, least-privilege permissions, and orchestration |
+| Model / Machine (M) | Deployment pipelines, lifecycle hygiene, and basic guardrails |
+
+An advanced configuration adds a Unified dimension across the four.
 
 Umbrella project for a normalized, machine-readable library of standards, standard operating procedures and practices for AI-assisted software development, and for **MCPL**, the schema-governed framework that lets an application act as its own subject-matter expert for any AI.
 

@@ -39,6 +39,8 @@ Last updated 2026-11-12. This ledger is authoritative where it differs from any 
 | D32 | MCPL is an API / framework that makes an application its own subject-matter expert through a governed schema (see docs/vision/mcpl-vision.md) | 2026-11-12 |
 | D33 | The umbrella lives in its own organization as github.com/wiredFRONT/INCRAM, public. (Planning name: stigops-AI.) MCPL is github.com/wiredFRONT/MCPL | 2026-11-12 |
 | D34 | MCPL must clearly collapse the existing standards, then extend with our framework, to normalize and be easily adoptable by AI. Repository shape: upstream / core / extensions / routes / examples | 2026-11-12 |
+| D35 | The umbrella is named INCRAM: Inference, Neural, Cognitive, Reasoning, Agentic, Machine. Four domains: Inference / Neural (model serving, quantization baselines, runtime behavior); Cognitive / Reasoning (prompt schemas, decision routing, deterministic logic); Agentic / Autonomous (tool-use scoping, least-privilege permissions, orchestration); Model / Machine (deployment pipelines, lifecycle hygiene, basic guardrails) | 2026-11-12 |
+| D36 | An advanced configuration is offered above the base, adding a Unified dimension. Its public name is parked pending a name check | 2026-11-12 |
 
 ## Context (Jesse)
 - Jesse co-authored more than 14 Windows and Linux DISA STIGs. He is the primary source on STIG mechanics, licensing and DISA process.
@@ -105,7 +107,7 @@ Last updated 2026-11-12. This ledger is authoritative where it differs from any 
 |---|---|
 | O8 | Rule on the research corrections above (accept, change or reject each) |
 | O9 | Run the second-model cross-check on R1 and R2 before pass 0 (schema), or start pass 0 in parallel |
-| O10 | What INCRAM stands for, so the README and documents can use the name properly |
+| O10 | How the four INCRAM domains relate to the four layers (D5): two axes on every rule, or the domains as the breakdown of the AI layer only |
 
 ## Later, not blocking
 | # | Item |
