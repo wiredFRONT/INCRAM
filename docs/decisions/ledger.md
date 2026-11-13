@@ -66,7 +66,7 @@ Last updated 2026-11-13. This ledger is authoritative where it differs from any 
 | # | Run | Status |
 |---|---|---|
 | R1 | Stigops AI umbrella baseline sources | DONE 2026-11-12. Text in docs/research. Cross-checked by Codex 2026-11-13: of ten load-bearing claims, 6 consistent, 3 divergent, 1 could not be verified |
-| R2 | MCPL AI interaction specs crosswalk (14 specs, crosswalk table, host matrix, evidence review) | DONE 2026-11-12. Not yet cross-checked |
+| R2 | MCPL AI interaction specs crosswalk (14 specs, crosswalk table, host matrix, evidence review) | DONE 2026-11-12. Text in docs/research. Cross-checked by Codex 2026-11-13: of ten load-bearing claims, 6 consistent, 3 divergent, 1 could not be verified |
 
 ## Research corrections awaiting Jesse (R2). His decisions above are unchanged until he rules.
 | Affects | What the research found | Proposed adjustment |
@@ -93,7 +93,17 @@ Last updated 2026-11-13. This ledger is authoritative where it differs from any 
 | XCCDF export is lossy | XCCDF permits arbitrary XML metadata, so custom fields can survive export; standard consumers need not act on them | Already reflected in schema/rule-fields.md revision 2 |
 | OSCAL set aside | Compliance Trestle supports smaller OSCAL structures, Markdown authoring and Git workflows | Prototype one round trip before treating OSCAL as too heavy (A1 stays an assumption) |
 
-## White space: no upstream exists, MCPL must define
+## Cross-check findings awaiting Jesse (R2, Codex 2026-11-13). Full text: docs/research/cross-check/codex-3-R2.md
+| R2 claim | What the second model found at the primary source | Proposed adjustment |
+|---|---|---|
+| No host documents both elicitation and MCP Apps | Cursor documents both; VS Code documents both, with Apps experimental. R2's own matrix already said so for Cursor | Correct the headline: some hosts support both. Routing by declared capability is unaffected |
+| The host's per-call approval prompt is a guaranteed checkpoint | VS Code says approval depends on session permissions, organization policy and earlier approvals. Not every call prompts | The floor cannot promise a human checkpoint. Affects the routes table and D25 |
+| A page MCPL serves proves a human act | Could not be verified. An authenticated request to our page does not show whether a person or automation made it | Write an explicit assurance model before building approval evidence. WebAuthn user presence and user verification are the primitives to evaluate. Affects D25 |
+| Interruption studies show passive UI is preferable | The cited study is about proactive assistance and recommends adapting proactivity. It does not show passive is better in general | Keep passive as Jesse's design choice (D11, D14), not as a research finding. Test it (D26) |
+| A small fine-tuned classifier reaches 99% | True for multilingual e-commerce intent on synthetic data only | Feasibility experiment only; needs held-out MCPL data |
+| No upstream exists for workflows or for signal provenance | SCXML (W3C) defines event-driven states and transitions. PROV-O (W3C) models provenance. CloudEvents has a signed-event extension design | Compare against these before defining our own. The white-space list below is narrower than stated |
+
+## White space: no upstream exists, MCPL must define (items 1, 2 and 4 are challenged by the R2 cross-check above)
 1. Workflows and chained events (a declared interaction graph for an app)
 2. Signed signal provenance and a trust level
 3. Anti-nag policy
