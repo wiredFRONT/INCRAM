@@ -65,7 +65,7 @@ Last updated 2026-11-13. This ledger is authoritative where it differs from any 
 ## Research runs
 | # | Run | Status |
 |---|---|---|
-| R1 | Stigops AI umbrella baseline sources | DONE 2026-11-12. Not yet cross-checked |
+| R1 | Stigops AI umbrella baseline sources | DONE 2026-11-12. Text in docs/research. Not yet cross-checked |
 | R2 | MCPL AI interaction specs crosswalk (14 specs, crosswalk table, host matrix, evidence review) | DONE 2026-11-12. Not yet cross-checked |
 
 ## Research corrections awaiting Jesse (R2). His decisions above are unchanged until he rules.
@@ -122,9 +122,11 @@ Last updated 2026-11-13. This ledger is authoritative where it differs from any 
 | # | Question |
 |---|---|
 | O8 | Rule on the research corrections above (accept, change or reject each) |
-| O12 | How the three tiers (D52) relate to the base and CRANIUM configurations (D36, D41) |
+| O12 | How the three tiers (D52) relate to the base and CRANIUM configurations (D36, D41), including whether base rules stay selected in CRANIUM |
 | O13 | What CAT I "must be satisfied regardless" (D46) gates, given D3 (never restricts the AI) and D6 (default advice is ship the prototype) |
 | O14 | The number of years for the maturity rule (D51) |
+| O15 | `extends` across repositories: XCCDF requires the parent rule inside the same Benchmark, and INCRAM is one repository per baseline (D27). Raised by the cross-check |
+| O16 | How the Unified dimension of CRANIUM (D36) is represented in the schema. Raised by the cross-check |
 
 ## Later, not blocking
 | # | Item |
