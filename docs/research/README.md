@@ -18,3 +18,10 @@ Two research runs were completed on 2026-11-12. **The full report texts are not 
 - Run the second-model cross-check and record the result beside each report.
 
 The findings that change the plan are summarized in `../decisions/ledger.md`.
+
+## Cross-checks
+
+- `cross-check/brief-1-field-list.md`: the brief given to the second model.
+- `cross-check/codex-1-field-list.md`: Codex CLI 0.167.1 review of `schema/rule-fields.md` against NIST IR 7275 Rev 4 (XCCDF 1.2), 2026-11-12. The reviewer reports it opened the specification online.
+- `cross-check/codex-1-run1-partial.md`: first run, where the reviewer could not read the repository files.
+- R1 and R2 have not been cross-checked yet; their texts are not in this repository.
