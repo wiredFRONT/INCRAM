@@ -45,6 +45,7 @@ Last updated 2026-11-12. This ledger is authoritative where it differs from any 
 | D38 | The structure must leave a clean attachment point for Jesse's reasoning governance engine, to be woven in later | 2026-11-12 |
 | D39 | Build order: foundation and schema first; then optimization passes that cut bloat; then the MCP server giving Context7-level access to the library | 2026-11-12 |
 | D40 | INCRAM ships its own STIG viewer rather than depending on a third-party one | 2026-11-12 |
+| D41 | CRANIUM content lives in the same library and schema as the base, switched on by configuration, not kept as a separate product (closes O11) | 2026-11-12 |
 
 ## Context (Jesse)
 - Jesse co-authored more than 14 Windows and Linux DISA STIGs. He is the primary source on STIG mechanics, licensing and DISA process.
@@ -112,7 +113,6 @@ Last updated 2026-11-12. This ledger is authoritative where it differs from any 
 | O8 | Rule on the research corrections above (accept, change or reject each) |
 | O9 | Run the second-model cross-check on R1 and R2 before pass 0 (schema), or start pass 0 in parallel |
 | O10 | How the four INCRAM domains relate to the four layers (D5): two axes on every rule, or the domains as the breakdown of the AI layer only |
-| O11 | What 'absorbing all of CRANIUM and folding it in' covers: the CRANIUM tier's own content folded into the one library, or the published material of the existing company Cranium AI collated as a source (licence then decides import vs cite-only) |
 
 ## Later, not blocking
 | # | Item |
