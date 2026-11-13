@@ -47,6 +47,7 @@ Last updated 2026-11-12. This ledger is authoritative where it differs from any 
 | D40 | INCRAM ships its own STIG viewer rather than depending on a third-party one | 2026-11-12 |
 | D41 | CRANIUM content lives in the same library and schema as the base, switched on by configuration, not kept as a separate product (closes O11) | 2026-11-12 |
 | D42 | Layers and domains are two axes: every rule carries both a layer and a domain, so governance can attach by domain across all four layers (closes O10) | 2026-11-12 |
+| D43 | A second-model cross-check of R1, R2 and the rule field list runs before the JSON Schema is written (closes O9) | 2026-11-12 |
 
 ## Context (Jesse)
 - Jesse co-authored more than 14 Windows and Linux DISA STIGs. He is the primary source on STIG mechanics, licensing and DISA process.
@@ -112,7 +113,6 @@ Last updated 2026-11-12. This ledger is authoritative where it differs from any 
 | # | Question |
 |---|---|
 | O8 | Rule on the research corrections above (accept, change or reject each) |
-| O9 | Run the second-model cross-check on R1 and R2 before pass 0 (schema), or start pass 0 in parallel |
 
 ## Later, not blocking
 | # | Item |
