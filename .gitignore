@@ -5,3 +5,4 @@ build/
 # Rule fixtures may contain a made-up .env on purpose
 !reference/**/fixtures/**/.env
 !layers/**/fixtures/**/.env
+__pycache__/
