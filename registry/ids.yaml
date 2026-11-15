@@ -1,0 +1,10 @@
+# Central ID registry (D29, provisional). Every rule ID ever issued, in any baseline repository.
+# An ID is never reused, even after its rule is retired. The linter refuses a rule whose ID is not here,
+# and refuses two rules with the same ID. The ID format is provisional (L14).
+schema: 1
+ids:
+  - id: r-4k7q2m
+    issued: 2026-11-15
+    repo: wiredFRONT/INCRAM
+    path: reference/layers/L2-dev/secrets/r-4k7q2m-no-secrets-in-code
+    state: active

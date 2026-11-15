@@ -50,8 +50,10 @@ The structure is modeled on how DISA SRGs and STIGs work: a vendor-neutral base,
 | `docs/sources/canonical-sources.md` | The single list of official sources, with version pins and status |
 | `docs/plan/research-plan.md` | The original research plan (partly superseded; the ledger wins) |
 | `docs/research/` | Research runs R1 (umbrella baseline) and R2 (MCPL crosswalk) |
-| `schema/` | Rule and profile schemas. Not yet written (pass 0) |
-| `registry/` | Central ID registry. Not yet written |
+| `schema/` | Rule field list and rule header schema (drafts). Profile schema not yet written |
+| `linter/` | Enforces the folder standard and the schema on every rule |
+| `reference/` | Reference rules that prove the schema and linter. One so far |
+| `registry/` | Central ID registry (one ID issued). Source registry not yet written |
 | `modules/mcpl` | Optional submodule: the MCPL repository |
 
 ## What happens next

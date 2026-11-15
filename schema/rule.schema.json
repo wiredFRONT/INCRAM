@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/wiredFRONT/INCRAM/schema/rule.schema.json",
+  "title": "INCRAM rule header",
+  "description": "The structured header at the top of every rule.md. Draft 0.1, built from schema/rule-fields.md revision 2. Not accepted: fields marked PROPOSED or PROVISIONAL there are optional here until Jesse rules on them.",
+  "type": "object",
+  "required": ["id", "title", "layer", "domain", "config", "severity", "status", "version", "trigger", "references", "feedback"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "Opaque and permanent (D18). The format is provisional until the ID format is decided (L14).",
+      "type": "string",
+      "pattern": "^r-[a-z0-9]{6}$"
+    },
+    "title": { "type": "string", "minLength": 8, "maxLength": 120 },
+    "layer": { "enum": ["L1-ai", "L2-dev", "L3-stack", "L4-deps"] },
+    "domain": { "description": "D35, D42.", "enum": ["IN", "CR", "A", "M"] },
+    "config": { "description": "D36, D41.", "enum": ["base", "cranium"] },
+    "severity": { "description": "high, medium, low are CAT I, II, III (D46).", "enum": ["high", "medium", "low"] },
+    "status": { "description": "The XCCDF status values.", "enum": ["incomplete", "draft", "interim", "accepted", "deprecated"] },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "trigger": { "description": "When the rule applies, in plain words.", "type": "string", "minLength": 8 },
+    "references": {
+      "description": "Official sources only (D31).",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["authority", "document", "locator", "pin", "url"],
+        "additionalProperties": false,
+        "properties": {
+          "authority": { "type": "string" },
+          "document": { "type": "string" },
+          "locator": { "type": "string" },
+          "pin": { "type": "string" },
+          "url": { "type": "string", "pattern": "^https://" }
+        }
+      }
+    },
+    "idents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["system", "value"],
+        "additionalProperties": false,
+        "properties": { "system": { "type": "string", "pattern": "^https?://" }, "value": { "type": "string" } }
+      }
+    },
+    "extends": { "type": "string", "pattern": "^r-[a-z0-9]{6}$" },
+    "requires": { "type": "array", "items": { "type": "string", "pattern": "^r-[a-z0-9]{6}$" } },
+    "conflicts": { "type": "array", "items": { "type": "string", "pattern": "^r-[a-z0-9]{6}$" } },
+    "feedback": { "enum": ["on", "off"] },
+    "origin": { "description": "PROPOSED (D12). The body still labels individual statements.", "enum": ["UPSTREAM", "INCRAM", "MIXED"] },
+    "override_why": { "description": "PROPOSED (D10).", "type": "string" },
+    "review": {
+      "description": "PROPOSED (D49). The linter checks that due is at most twelve months after last.",
+      "type": "object",
+      "required": ["last", "due"],
+      "additionalProperties": false,
+      "properties": { "last": { "type": "string", "format": "date" }, "due": { "type": "string", "format": "date" } }
+    },
+    "mitigations": {
+      "description": "PROPOSED (D46). Accepted ways to lower the severity when the rule cannot be satisfied yet.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "lowers_to", "requires_evidence"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "lowers_to": { "enum": ["medium", "low"] },
+          "requires_evidence": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+        }
+      }
+    },
+    "maturity": { "description": "PROPOSED (D51).", "enum": ["srg-config", "own-stig"] },
+    "tier": { "description": "PROVISIONAL (D52, O12).", "enum": ["foundational", "managed", "advanced"] },
+    "license": { "description": "PROVISIONAL (O8). SPDX identifier.", "type": "string" },
+    "provenance": {
+      "description": "PROVISIONAL (O8).",
+      "type": "object",
+      "required": ["imported_from", "release", "sha256"],
+      "additionalProperties": false,
+      "properties": {
+        "imported_from": { "type": "string" },
+        "release": { "type": "string" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "file": { "type": "string" }
+      }
+    },
+    "verification": {
+      "description": "PROVISIONAL (O8, A8).",
+      "type": "object",
+      "required": ["by", "date", "method"],
+      "additionalProperties": false,
+      "properties": {
+        "by": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "method": { "type": "string" },
+        "second_check": { "type": "string" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "description": "A CAT I rule that offers a mitigation may only lower it to CAT II (D46).",
+      "if": { "properties": { "severity": { "const": "high" } }, "required": ["mitigations"] },
+      "then": { "properties": { "mitigations": { "items": { "properties": { "lowers_to": { "const": "medium" } } } } } }
+    }
+  ]
+}
