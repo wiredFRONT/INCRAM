@@ -1,6 +1,6 @@
 # INCRAM and MCPL: build plan
 
-Status: PROPOSED 2026-11-16, for Jesse's review. Section 13 evaluates an external review received the same day; section 14 records what Jesse's own three products change. It replaces the pass list in `research-plan.md`. The ledger wins where they differ. Nothing in this plan changes a decision; where the research argues against a decision, the plan says so and leaves it to Jesse.
+Status: PROPOSED 2026-11-16, for Jesse's review. Section 13 evaluates an external review received the same day; section 14 records what three unguided AI builds of the same request show. It replaces the pass list in `research-plan.md`. The ledger wins where they differ. Nothing in this plan changes a decision; where the research argues against a decision, the plan says so and leaves it to Jesse.
 
 How to read it: each phase has a goal, what gets built, an exit test a machine can run, the research it rests on, and the rulings it needs. Work proceeds one increment and one decision per pass.
 
@@ -186,13 +186,29 @@ Another AI reviewed this plan and made six recommendations (`../research/reviews
 
 Net effect on the plan: Phase 3 gains the state-file history, the data-only rule for upstream text and the offline enrichment step. Phase 4 gains the hash-bound approval. Phase 1 gains the stated rule that no generated script is served as a fix. No phase is reordered.
 
-## 14. What Jesse's own three products change (2026-11-16)
+## 14. What unguided builds show (2026-11-16, corrected the same day)
 
-Devagotchi, Vaultix and Nomen are three working installations of the same idea. A first comparison of their AI-facing surfaces is held in the private project (`claude/installations-comparison.md`), because one of the three repositories is private. What it changes here:
+Jesse asked AI, in plain language, to build what MCPL describes, separately in three of his own products. The three results were compared. They are specimens of what AI produces without the framework. They are not sources for it: nothing is taken from a build into the framework, and the framework repositories name no product. The comparison itself is kept privately with the builds.
 
-1. Phase 4 starts from the installations, not from the specifications. MCPL's core is what the three already share; each difference is aligned to one standard or kept as a named route.
-2. Six practices are already common to all three and become MCPL's stated core: authored guidance for the AI; a secret never passes through the AI; the human step happens on something the product owns, reached by a link; the AI is told what to do next; one implementation for people and for AI; identity from the credential, never from what the AI says.
-3. Three pieces are lifted from an installation instead of designed again: serving both MCP eras (from Nomen), the approval request record (from Devagotchi), and the rule for when something may be raised unasked (from Devagotchi).
-4. The workflows extension has three real inputs to reconcile before it is compared with SCXML.
-5. The invented firewall example is replaced by the three products as worked cases, each with a conformance table and an INCRAM profile.
-6. "A secret never passes through the AI" is common to all three and is INCRAM rule `r-4k7q2m` at proposal time: the first rule with three installations behind it.
+An earlier version of this section said pieces would be "lifted" from the builds and that the builds would replace the generic example. That was wrong and is withdrawn. The framework is written from the standards and from general AI practice; builds are measured against it and refined toward it.
+
+What the three builds show: unguided, the AI gets the principles right and is inconsistent on everything a standard should fix.
+
+**Arrived at in all three without being told.** These still have to be written as requirements, because agreement by instinct is not conformance: authored guidance for the AI; a secret never passes through the AI; the human step happens on a surface the application owns, reached by a link; the AI is told what to do next; one implementation for people and for AI; identity from the credential, never from what the AI says.
+
+**Different in each build.** Each row is a place the framework must state one answer.
+
+| Where the builds diverged | What the framework must state | Rests on |
+|---|---|---|
+| Which protocol revisions the server speaks (three different sets) | The revisions a conforming server serves, and how it serves the stateless and the older era together | MCP 2026-07-28 (R2) |
+| Result format (typed in two, JSON packed into text in one) | Results are structured content with an output schema | MCP tool definition, read first-hand |
+| Behaviour hints on actions (all, some, none) | Every action declares its hints; MCPL's own consequence level is the authority, because hosts treat hints as untrusted | MCP tool definition, read first-hand |
+| How actions are grouped (one step-by-step tool, one flat list, one server per domain) | The surface shapes allowed and when each applies | Nothing upstream; MCPL's own, labelled as such |
+| Action names (three conventions) | One naming convention inside the protocol's name rules | MCP tool name rules, read first-hand |
+| Approval (three mechanisms; none proves a person acted) | One approval record and a written assurance model | Nothing upstream (cross-check of R2) |
+| Asking the person a question (the protocol's own mechanism used in one build of three) | Use the protocol's mechanism when the client declares it; link out for anything secret | MCP elicitation, read first-hand |
+| Workflows (a file, a set of tools, a state machine) | One workflow record | Compare with SCXML first (cross-check of R2) |
+| When the AI may raise something unasked (a written rule in one build of three) | A restraint policy every conforming application carries | Nothing upstream; MCPL's own |
+| Machine-readable self-description (present in one build of three) | The action entry is required, and the interface and the server both read it | `core/action.schema.json` |
+
+Effect on the plan: Phase 4 writes each row as a requirement with a conformance test. A build is then scored against the tests, and its score lives with that build. The generic example in MCPL stays generic.

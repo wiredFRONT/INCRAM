@@ -170,5 +170,5 @@ Last updated 2026-11-16. This ledger is authoritative where it differs from any 
 | L17 | A fetch path that can read cyber.mil and official legal texts |
 | L18 | Hands-on test per host: does the server's guidance text reach the AI |
 | L19 | Listing in a skills directory alongside the MCP registry |
-| L20 | Compare Jesse's other AI builds of MCPL against the research. First pass done 2026-11-16 for Devagotchi, Vaultix and Nomen (held in the private project; summary in docs/plan/build-plan.md section 14) |
+| L20 | Compare Jesse's other AI builds of MCPL against the research. First pass done 2026-11-16 on three of them. The builds are specimens of unguided output, not sources for the framework; the comparison is kept privately and the framework names no product (docs/plan/build-plan.md section 14) |
 | L21 | Scope and timing of the consulting and training-rival products (D45), relative to the build order in D39 |
