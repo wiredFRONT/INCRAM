@@ -6,7 +6,7 @@ domain: M
 config: base
 severity: high
 status: draft
-version: 0.1.0
+version: 0.2.0
 trigger: The project contains source code, configuration or scripts that are committed to a repository or shipped to users.
 references:
   - authority: NIST
@@ -14,6 +14,33 @@ references:
     locator: IA-5(7) No Embedded Unencrypted Static Authenticators
     pin: "5.2.0; OSCAL catalog last-modified 2026-10-22; usnistgov/oscal-content commit f0de6d8"
     url: https://github.com/usnistgov/oscal-content/blob/f0de6d8d8c059d374f15e0ae07508d82e370fc1d/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json
+    source: nist-800-53-r5
+idents:
+  - system: http://cyber.mil/cci
+    value: CCI-004069
+    control: IA-5 (7)
+    control_revision: "5"
+    source: disa-cci
+  - system: http://cyber.mil/cci
+    value: CCI-002367
+    control: IA-5 (7)
+    control_revision: "4"
+    source: disa-cci
+  - system: https://cwe.mitre.org/
+    value: CWE-798
+    title: Use of Hard-coded Credentials
+    source: mitre-cwe
+associated:
+  - benchmark: Application_Security_Development_STIG
+    release: V6R5
+    group: V-222642
+    rule: SV-222642r961863_rule
+    stig_id: APSC-DV-003110
+    srg: SRG-APP-000516
+    severity: high
+    cci: [CCI-002367]
+    title: The application must not contain embedded authentication data.
+    source: disa-asd-stig
 feedback: "on"
 origin: MIXED
 review:
@@ -85,9 +112,27 @@ Never ask the person to paste the secret into the chat.
 
 INCRAM recommendation, for Jesse's review. If the secret cannot be removed yet, the finding may be lowered to CAT II only with all of the evidence listed under `mitigations` in the header. It is never lowered to CAT III and never closed by a mitigation.
 
+## Associated STIGs and SRGs
+
+UPSTREAM. Read from the official files pinned in `registry/sources.yaml` on 2026-11-16 and re-checked by `linter/verify_links.py`.
+
+| Level | Identifier | What it is |
+|---|---|---|
+| Control | NIST SP 800-53 Rev 5.2.0, IA-5(7) | No Embedded Unencrypted Static Authenticators |
+| CCI | CCI-004069 | The Rev 5 mapping of IA-5 (7) in DISA's CCI list |
+| CCI | CCI-002367 | The Rev 4 mapping of IA-5 (7): not embedded in applications. This is the one the STIG rule cites |
+| SRG | SRG-APP-000516 | The requirement the STIG rule is filed under |
+| STIG | Application Security and Development STIG V6R5, V-222642, SV-222642r961863_rule, APSC-DV-003110 | "The application must not contain embedded authentication data." CAT I |
+| Weakness | CWE-798 | Use of Hard-coded Credentials (CWE 5.0). CWE-259 and CWE-321 are its children for passwords and cryptographic keys |
+
+INCRAM: The STIG's CAT I and this rule's CAT I agree. The STIG still cites the Rev 4 CCI while the control text used here is Rev 5, so both CCIs are carried. CCI-000202 and CCI-000203 (access scripts, function keys) map to the same control in Rev 4 and are not carried, because no STIG rule read so far cites them for this requirement.
+
+INCRAM: A new CVE reaches this rule through its weakness: when a CVE record names CWE-798, CWE-259 or CWE-321, this rule's check and fixtures are reviewed against it.
+
 ## Rot guards
 
 - INCRAM: The patterns in `check.py` go stale as providers change key formats. Review them at each yearly review and whenever a provider announces a new format.
 - INCRAM: A scanner that finds nothing has not proved there are no secrets. Say "none found", never "none exist".
 - INCRAM: Never copy a found secret into a report, a log, a chat message or a test fixture.
+- INCRAM: The STIG rule ID carries a revision. When the pinned STIG release changes, re-read V-222642 and update the release and rule ID together; never keep an old rule ID against a new release.
 - INCRAM: Fixtures in this folder contain made-up values only. Do not replace them with real-looking keys; hosting services block pushes that contain them.

@@ -9,3 +9,20 @@ python3 linter/lint_rules.py <folder>   # one rule
 ```
 
 Not yet done: packaging as a reusable CI action (D29), a check that a profile override carries a `why`, and a check that the source URL is on the canonical sources list.
+
+## verify_links.py
+
+Checks every rule's links into the official catalogs (control, CCI, SRG, STIG rule, CWE) against the files pinned in `../registry/sources.yaml`, and reports when a pinned file has changed or a newer release exists.
+
+```
+pip install pyyaml
+python3 linter/verify_links.py
+```
+
+## check_modules.py
+
+Checks the links between this umbrella and the repositories in `../registry/modules.yaml`: every INCRAM rule ID a module says it implements must exist in the ID registry.
+
+```
+python3 linter/check_modules.py --module mcpl=<path to an MCPL checkout>
+```

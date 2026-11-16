@@ -1,0 +1,69 @@
+# Machine-readable source registry: the official files INCRAM rules are verified against.
+# Every entry is the owner's own file. sha256 is of the downloaded file on `read`.
+# detector says how a change upstream is noticed (D49, D50):
+#   hash        the URL always serves the latest file; a different hash means it changed
+#   next        the URL is one fixed release; `next` lists file names to probe for a newer release
+# Verified by linter/verify_links.py.
+schema: 1
+updated: 2026-11-16
+sources:
+  - id: nist-800-53-r5
+    authority: NIST
+    title: SP 800-53 Rev 5 controls, OSCAL catalog
+    version: "5.2.0"
+    published: 2026-10-22
+    url: https://raw.githubusercontent.com/usnistgov/oscal-content/f0de6d8d8c059d374f15e0ae07508d82e370fc1d/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json
+    sha256: 64ca6b4161de51ab6af098a7d101d326f14c95e1abf721396cd8a049e8115eeb
+    read: 2026-11-15
+    kind: oscal-catalog
+    license: US public domain and CC0 1.0 (repository LICENSE.md)
+    detector:
+      method: git-head
+      repo: https://github.com/usnistgov/oscal-content
+      pinned_commit: f0de6d8d8c059d374f15e0ae07508d82e370fc1d
+  - id: disa-cci
+    authority: DISA
+    title: Control Correlation Identifier (CCI) list
+    version: "2025-01-23"
+    published: 2025-01-23
+    url: https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_CCI_List.zip
+    sha256: 077cbb6d2ae5f8fdbaaf416d87a34a8621767cdba490f3283feb0c5c35892700
+    member: U_CCI_List.xml
+    member_sha256: a9e3850f7f30665170c377839abea2fd94863019e434cb27b3f6b2d5e277f403
+    read: 2026-11-16
+    kind: cci-list
+    license: not stated in the archive
+    detector:
+      method: hash
+  - id: disa-asd-stig
+    authority: DISA
+    title: Application Security and Development STIG
+    version: "V6R5"
+    published: 2026-09-30
+    url: https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_ASD_V6R5_STIG.zip
+    sha256: b73e8a74d591982d49cdc9e0c5c0023b37ab87d91f3f3f150d6dab8baa23c435
+    member: U_ASD_V6R5_Manual_STIG/U_ASD_STIG_V6R5_Manual-xccdf.xml
+    member_sha256: 34e8dfa6841229735082e341a1cf6c5a48eec84ce0e7e5d3f03ab02355fe066d
+    read: 2026-11-16
+    kind: xccdf-benchmark
+    benchmark_id: Application_Security_Development_STIG
+    license: not confirmed from a DISA page (see research R1)
+    detector:
+      method: next
+      next:
+        - https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_ASD_V6R6_STIG.zip
+        - https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_ASD_V7R1_STIG.zip
+  - id: mitre-cwe
+    authority: MITRE
+    title: Common Weakness Enumeration (CWE) list
+    version: "5.0"
+    published: 2026-10-28
+    url: https://cwe.mitre.org/data/xml/cwec_latest.xml.zip
+    sha256: bcda44c9abf61ff977f50c3c6649eea5a97a7b0626b0396c2c3ec4bfb973a3dc
+    member: cwec_v5.0.xml
+    member_sha256: 47165a9593def89c69b9ef50c34d99ac68db55df8373613e85e9cc9ceecefb1d
+    read: 2026-11-16
+    kind: cwe-catalog
+    license: see cwe.mitre.org terms of use (not read)
+    detector:
+      method: hash

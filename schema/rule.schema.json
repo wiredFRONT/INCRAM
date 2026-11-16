@@ -4,7 +4,19 @@
   "title": "INCRAM rule header",
   "description": "The structured header at the top of every rule.md. Draft 0.1, built from schema/rule-fields.md revision 2. Not accepted: fields marked PROPOSED or PROVISIONAL there are optional here until Jesse rules on them.",
   "type": "object",
-  "required": ["id", "title", "layer", "domain", "config", "severity", "status", "version", "trigger", "references", "feedback"],
+  "required": [
+    "id",
+    "title",
+    "layer",
+    "domain",
+    "config",
+    "severity",
+    "status",
+    "version",
+    "trigger",
+    "references",
+    "feedback"
+  ],
   "additionalProperties": false,
   "properties": {
     "id": {
@@ -12,100 +24,385 @@
       "type": "string",
       "pattern": "^r-[a-z0-9]{6}$"
     },
-    "title": { "type": "string", "minLength": 8, "maxLength": 120 },
-    "layer": { "enum": ["L1-ai", "L2-dev", "L3-stack", "L4-deps"] },
-    "domain": { "description": "D35, D42.", "enum": ["IN", "CR", "A", "M"] },
-    "config": { "description": "D36, D41.", "enum": ["base", "cranium"] },
-    "severity": { "description": "high, medium, low are CAT I, II, III (D46).", "enum": ["high", "medium", "low"] },
-    "status": { "description": "The XCCDF status values.", "enum": ["incomplete", "draft", "interim", "accepted", "deprecated"] },
-    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
-    "trigger": { "description": "When the rule applies, in plain words.", "type": "string", "minLength": 8 },
+    "title": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 120
+    },
+    "layer": {
+      "enum": [
+        "L1-ai",
+        "L2-dev",
+        "L3-stack",
+        "L4-deps"
+      ]
+    },
+    "domain": {
+      "description": "D35, D42.",
+      "enum": [
+        "IN",
+        "CR",
+        "A",
+        "M"
+      ]
+    },
+    "config": {
+      "description": "D36, D41.",
+      "enum": [
+        "base",
+        "cranium"
+      ]
+    },
+    "severity": {
+      "description": "high, medium, low are CAT I, II, III (D46).",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "status": {
+      "description": "The XCCDF status values.",
+      "enum": [
+        "incomplete",
+        "draft",
+        "interim",
+        "accepted",
+        "deprecated"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "trigger": {
+      "description": "When the rule applies, in plain words.",
+      "type": "string",
+      "minLength": 8
+    },
     "references": {
       "description": "Official sources only (D31).",
       "type": "array",
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["authority", "document", "locator", "pin", "url"],
+        "required": [
+          "authority",
+          "document",
+          "locator",
+          "pin",
+          "url"
+        ],
         "additionalProperties": false,
         "properties": {
-          "authority": { "type": "string" },
-          "document": { "type": "string" },
-          "locator": { "type": "string" },
-          "pin": { "type": "string" },
-          "url": { "type": "string", "pattern": "^https://" }
+          "authority": {
+            "type": "string"
+          },
+          "document": {
+            "type": "string"
+          },
+          "locator": {
+            "type": "string"
+          },
+          "pin": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https://"
+          },
+          "source": {
+            "description": "ID of the pinned file in registry/sources.yaml this reference is verified against.",
+            "type": "string"
+          }
         }
       }
     },
     "idents": {
+      "description": "Identifiers that tie the rule into other catalogs. Each is verified against the pinned official file named in `source`.",
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["system", "value"],
+        "required": [
+          "system",
+          "value",
+          "source"
+        ],
         "additionalProperties": false,
-        "properties": { "system": { "type": "string", "pattern": "^https?://" }, "value": { "type": "string" } }
+        "properties": {
+          "system": {
+            "description": "Naming-system URI. For CCI this is the URI DISA's own benchmarks use.",
+            "type": "string",
+            "pattern": "^https?://"
+          },
+          "value": {
+            "type": "string"
+          },
+          "title": {
+            "description": "The identifier's own name or definition subject, checked against the source.",
+            "type": "string"
+          },
+          "control": {
+            "description": "For a CCI: the control it maps to, as the CCI list writes it, for example 'IA-5 (7)'.",
+            "type": "string"
+          },
+          "control_revision": {
+            "description": "For a CCI: the SP 800-53 revision of that mapping.",
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          }
+        }
       }
     },
-    "extends": { "type": "string", "pattern": "^r-[a-z0-9]{6}$" },
-    "requires": { "type": "array", "items": { "type": "string", "pattern": "^r-[a-z0-9]{6}$" } },
-    "conflicts": { "type": "array", "items": { "type": "string", "pattern": "^r-[a-z0-9]{6}$" } },
-    "feedback": { "enum": ["on", "off"] },
-    "origin": { "description": "PROPOSED (D12). The body still labels individual statements.", "enum": ["UPSTREAM", "INCRAM", "MIXED"] },
-    "override_why": { "description": "PROPOSED (D10).", "type": "string" },
+    "extends": {
+      "type": "string",
+      "pattern": "^r-[a-z0-9]{6}$"
+    },
+    "requires": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^r-[a-z0-9]{6}$"
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^r-[a-z0-9]{6}$"
+      }
+    },
+    "feedback": {
+      "enum": [
+        "on",
+        "off"
+      ]
+    },
+    "origin": {
+      "description": "PROPOSED (D12). The body still labels individual statements.",
+      "enum": [
+        "UPSTREAM",
+        "INCRAM",
+        "MIXED"
+      ]
+    },
+    "override_why": {
+      "description": "PROPOSED (D10).",
+      "type": "string"
+    },
     "review": {
       "description": "PROPOSED (D49). The linter checks that due is at most twelve months after last.",
       "type": "object",
-      "required": ["last", "due"],
+      "required": [
+        "last",
+        "due"
+      ],
       "additionalProperties": false,
-      "properties": { "last": { "type": "string", "format": "date" }, "due": { "type": "string", "format": "date" } }
+      "properties": {
+        "last": {
+          "type": "string",
+          "format": "date"
+        },
+        "due": {
+          "type": "string",
+          "format": "date"
+        }
+      }
     },
     "mitigations": {
       "description": "PROPOSED (D46). Accepted ways to lower the severity when the rule cannot be satisfied yet.",
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "lowers_to", "requires_evidence"],
+        "required": [
+          "id",
+          "lowers_to",
+          "requires_evidence"
+        ],
         "additionalProperties": false,
         "properties": {
-          "id": { "type": "string" },
-          "lowers_to": { "enum": ["medium", "low"] },
-          "requires_evidence": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+          "id": {
+            "type": "string"
+          },
+          "lowers_to": {
+            "enum": [
+              "medium",
+              "low"
+            ]
+          },
+          "requires_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          }
         }
       }
     },
-    "maturity": { "description": "PROPOSED (D51).", "enum": ["srg-config", "own-stig"] },
-    "tier": { "description": "PROVISIONAL (D52, O12).", "enum": ["foundational", "managed", "advanced"] },
-    "license": { "description": "PROVISIONAL (O8). SPDX identifier.", "type": "string" },
+    "maturity": {
+      "description": "PROPOSED (D51).",
+      "enum": [
+        "srg-config",
+        "own-stig"
+      ]
+    },
+    "tier": {
+      "description": "PROVISIONAL (D52, O12).",
+      "enum": [
+        "foundational",
+        "managed",
+        "advanced"
+      ]
+    },
+    "license": {
+      "description": "PROVISIONAL (O8). SPDX identifier.",
+      "type": "string"
+    },
     "provenance": {
       "description": "PROVISIONAL (O8).",
       "type": "object",
-      "required": ["imported_from", "release", "sha256"],
+      "required": [
+        "imported_from",
+        "release",
+        "sha256"
+      ],
       "additionalProperties": false,
       "properties": {
-        "imported_from": { "type": "string" },
-        "release": { "type": "string" },
-        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-        "file": { "type": "string" }
+        "imported_from": {
+          "type": "string"
+        },
+        "release": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "file": {
+          "type": "string"
+        }
       }
     },
     "verification": {
       "description": "PROVISIONAL (O8, A8).",
       "type": "object",
-      "required": ["by", "date", "method"],
+      "required": [
+        "by",
+        "date",
+        "method"
+      ],
       "additionalProperties": false,
       "properties": {
-        "by": { "type": "string" },
-        "date": { "type": "string", "format": "date" },
-        "method": { "type": "string" },
-        "second_check": { "type": "string" }
+        "by": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "method": {
+          "type": "string"
+        },
+        "second_check": {
+          "type": "string"
+        }
+      }
+    },
+    "associated": {
+      "description": "D20. STIG rules that state the same requirement for a product class. Keyed on the rule ID plus the release, because DISA rule IDs carry a revision.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "benchmark",
+          "release",
+          "group",
+          "rule",
+          "stig_id",
+          "srg",
+          "severity",
+          "cci",
+          "source"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "benchmark": {
+            "type": "string"
+          },
+          "release": {
+            "type": "string"
+          },
+          "group": {
+            "description": "Vulnerability ID, V-number.",
+            "type": "string",
+            "pattern": "^V-[0-9]+$"
+          },
+          "rule": {
+            "description": "Rule ID including its revision.",
+            "type": "string",
+            "pattern": "^SV-[0-9]+r[0-9]+_rule$"
+          },
+          "stig_id": {
+            "type": "string"
+          },
+          "srg": {
+            "type": "string",
+            "pattern": "^SRG-"
+          },
+          "severity": {
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "cci": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^CCI-[0-9]{6}$"
+            },
+            "minItems": 1
+          },
+          "title": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          }
+        }
       }
     }
   },
   "allOf": [
     {
       "description": "A CAT I rule that offers a mitigation may only lower it to CAT II (D46).",
-      "if": { "properties": { "severity": { "const": "high" } }, "required": ["mitigations"] },
-      "then": { "properties": { "mitigations": { "items": { "properties": { "lowers_to": { "const": "medium" } } } } } }
+      "if": {
+        "properties": {
+          "severity": {
+            "const": "high"
+          }
+        },
+        "required": [
+          "mitigations"
+        ]
+      },
+      "then": {
+        "properties": {
+          "mitigations": {
+            "items": {
+              "properties": {
+                "lowers_to": {
+                  "const": "medium"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   ]
 }

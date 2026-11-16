@@ -1,0 +1,16 @@
+# Repositories linked into the INCRAM umbrella (D27). Each is an optional git submodule:
+# a missing module must never break anything here. Checked by linter/check_modules.py.
+schema: 1
+modules:
+  - name: mcpl
+    repo: https://github.com/wiredFRONT/MCPL
+    path: modules/mcpl
+    optional: true
+    role: Enforces INCRAM rules when an AI proposes a change to an application
+    link_file: incram.yaml
+    provides:
+      - core/action.schema.json
+      - core/guard.schema.json
+    consumes:
+      - what: rule IDs from registry/ids.yaml
+        where: "**/guards/*.guard.json, field `implements`"

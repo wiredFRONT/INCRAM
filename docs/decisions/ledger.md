@@ -1,6 +1,6 @@
 # Decisions and opens ledger
 
-Last updated 2026-11-13. This ledger is authoritative where it differs from any other document.
+Last updated 2026-11-16. This ledger is authoritative where it differs from any other document.
 
 ## Decided (Jesse)
 | # | Decision | Date |
@@ -147,6 +147,7 @@ Last updated 2026-11-13. This ledger is authoritative where it differs from any 
 | O14 | The number of years for the maturity rule (D51) |
 | O15 | `extends` across repositories: XCCDF requires the parent rule inside the same Benchmark, and INCRAM is one repository per baseline (D27). Raised by the cross-check |
 | O16 | How the Unified dimension of CRANIUM (D36) is represented in the schema. Raised by the cross-check |
+| O17 | Whether INCRAM mirrors the two DISA levels as proposed in docs/design/grouping.md: requirement-level rules (the SRG role) and product-level rules that `extends` them (the STIG role) |
 
 ## Later, not blocking
 | # | Item |

@@ -39,6 +39,17 @@ The structure is modeled on how DISA SRGs and STIGs work: a vendor-neutral base,
 3. **Cross-verification is mandatory.** A second AI model checks the work before it is treated as settled.
 4. **Small increments.** One decision per pass.
 
+## How INCRAM and MCPL link
+
+- INCRAM carries MCPL as the optional submodule `modules/mcpl`, declared in `registry/modules.yaml`.
+- MCPL refers to INCRAM rules by ID only. A guard in MCPL lists the rules it enforces under `implements`.
+- `linter/check_modules.py` checks the link from this side: every rule ID a module implements must be an active ID in `registry/ids.yaml`. MCPL's own `tools/validate.py` checks the same from its side.
+- First live link: rule `r-4k7q2m` (no secrets in code) is enforced at proposal time by the MCPL guard `no-secret-in-proposal`.
+
+## How a rule links to the official catalogs
+
+Control, CCI, SRG, STIG rule and CWE are carried in each rule's header and verified against the official files pinned in `registry/sources.yaml` by `linter/verify_links.py`. See `docs/design/grouping.md`.
+
 ## Where things are
 
 | Path | What it holds |
@@ -53,7 +64,7 @@ The structure is modeled on how DISA SRGs and STIGs work: a vendor-neutral base,
 | `schema/` | Rule field list and rule header schema (drafts). Profile schema not yet written |
 | `linter/` | Enforces the folder standard and the schema on every rule |
 | `reference/` | Reference rules that prove the schema and linter. One so far |
-| `registry/` | Central ID registry (one ID issued). Source registry not yet written |
+| `registry/` | ID registry, pinned official sources, and linked modules |
 | `modules/mcpl` | Optional submodule: the MCPL repository |
 
 ## What happens next
