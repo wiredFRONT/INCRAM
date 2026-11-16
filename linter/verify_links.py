@@ -14,7 +14,8 @@ What it does:
                     severity, title and CCI list
        completeness no rule in a pinned benchmark cites one of the rule's CCIs without being listed
 
-Exit code: 0 all verified and nothing changed upstream; 1 a link failed; 2 links hold but upstream changed.
+Exit code: 0 all verified and nothing changed upstream; 1 a link failed; 2 links hold but upstream changed;
+3 a pinned source could not be fetched, so some links were not verified (nothing failed).
 Downloaded files are data. They are parsed, never executed.
 """
 import argparse
@@ -133,7 +134,7 @@ def rule_headers():
                 yield path.parent.relative_to(ROOT), json.loads(json.dumps(yaml.safe_load(match.group(1)), default=str))
 
 
-def verify_rule(header, sources, parsed):
+def verify_rule(header, sources, parsed, unverified):
     problems = []
 
     def need(source_id):
@@ -141,7 +142,7 @@ def verify_rule(header, sources, parsed):
             problems.append(f"source {source_id!r} is not in registry/sources.yaml")
             return None
         if source_id not in parsed:
-            problems.append(f"source {source_id!r} could not be loaded")
+            unverified.append(source_id)
             return None
         return parsed[source_id]
 
@@ -249,19 +250,24 @@ def main():
 
     failed = 0
     count = 0
+    skipped = set()
     for folder, header in rule_headers():
         count += 1
-        problems = verify_rule(header, sources, parsed)
+        unverified = []
+        problems = verify_rule(header, sources, parsed, unverified)
+        skipped.update(unverified)
         links = len(header.get("idents", [])) + len(header.get("associated", [])) + sum(1 for r in header.get("references", []) if r.get("source"))
         if problems:
             failed += 1
             print(f"FAIL  {folder}")
             for problem in problems:
                 print(f"        {problem}")
+        elif unverified:
+            print(f"SKIP  {folder}: links into {sorted(set(unverified))} not verified (source not loaded)")
         else:
             print(f"ok    {folder}: {links} links verified")
-    print(f"{count} rule(s), {failed} failed, {changed} upstream change(s)")
-    sys.exit(1 if failed else (2 if changed else 0))
+    print(f"{count} rule(s), {failed} failed, {changed} upstream change(s), {len(skipped)} source(s) not loaded")
+    sys.exit(1 if failed else (2 if changed else (3 if skipped else 0)))
 
 
 if __name__ == "__main__":

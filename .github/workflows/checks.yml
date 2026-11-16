@@ -1,0 +1,42 @@
+name: checks
+
+# Runs on every push and pull request, and weekly so an upstream change is noticed
+# even when nobody is committing (ledger D49, D50).
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "17 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install jsonschema pyyaml
+      - name: Rule linter
+        run: python3 linter/lint_rules.py
+      - name: Module links (INCRAM to MCPL)
+        run: python3 linter/check_modules.py
+      - name: Links into official catalogs
+        run: |
+          set +e
+          python3 linter/verify_links.py
+          code=$?
+          if [ "$code" = "3" ]; then
+            echo "::warning::A pinned source could not be fetched from this runner. Links into it were not verified."
+            exit 0
+          fi
+          if [ "$code" = "2" ]; then
+            echo "::error::An upstream source changed. Re-review the rules that cite it and update registry/sources.yaml."
+          fi
+          exit $code

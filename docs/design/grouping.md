@@ -34,7 +34,12 @@ The pinned files and their hashes are in `registry/sources.yaml`. `linter/verify
 - The Group title in the benchmark is the SRG ID. That is the join between a STIG rule and its SRG requirement.
 - ASD STIG V6R5 has 286 rules: 34 CAT I, 230 CAT II, 22 CAT III.
 - A STIG rule keeps its old identifiers as legacy idents, so history stays traceable after renumbering.
-- CWE is a tree. CWE-798 is the base; CWE-259 (password) and CWE-321 (cryptographic key) are children. A CVE attaches to the rule through whichever of them it names.
+- CWE is a tree. CWE-798 is the base; CWE-259 (password) and CWE-321 (cryptographic key) are children.
+- The CWE list names example CVEs under each weakness (20 under CWE-798). The official CVE record sampled from those (CVE-2022-29964, CVE JSON 5.1) names no weakness at all. The join from CVE to rule therefore cannot rest on the CVE record alone.
+- SRG-APP-000516 is a catch-all: 57 of the 286 rules are filed under it, including V-222642. There are 189 distinct SRG IDs. The SRG ID is a real join for most rules and no join at all for those 57.
+- No rule in the benchmark uses `extends` (0 of 286). DISA carries lineage through the SRG ID and the CCI, not through XCCDF inheritance.
+- Each rule's description holds named sub-fields: VulnDiscussion, FalsePositives, FalseNegatives, Documentable, Mitigations, SeverityOverrideGuidance, PotentialImpacts, ThirdPartyTools, MitigationControl, Responsibility, IAControls. Mitigation and severity override already have a home in DISA's own record.
+- The 34 CAT I rules map to six control families: IA 11, AC 8, SC 7, SI 6, SA 3, MP 1.
 
 ## What INCRAM does with it today
 
@@ -56,6 +61,9 @@ Mirror the two DISA levels inside INCRAM, using fields that already exist:
 1. **Requirement level (the SRG role).** A technology-neutral rule, such as `r-4k7q2m`. It carries the control, the CCIs and the weakness.
 2. **Product level (the STIG role).** A rule for one stack or product that `extends` a requirement-level rule and adds the product's own check and fix, for example "no service key in a browser bundle" for one hosting platform.
 3. **Maturity (D51).** A technology starts as a configuration of the requirement-level rule (`maturity: srg-config`). When it has been stable for the agreed number of years it gets its own product-level rule set (`maturity: own-stig`).
-4. **Groups.** The XCCDF Group stays the layer (D5, D42). The requirement a product-level rule belongs to is its `extends` parent, the same join the SRG ID gives DISA.
+4. **Groups.** The XCCDF Group stays the layer (D5, D42). The requirement a product-level rule belongs to is its `extends` parent.
+5. **The join across catalogs is the control and the CCI, not the SRG ID.** The catch-all finding above means an SRG ID cannot be the key. The SRG ID is carried for display (D20) and verified, nothing more.
+
+Revised after reading the benchmark: DISA does not use `extends` at all, so using it for the requirement-to-product link is INCRAM's own choice, not a DISA practice. The alternative that matches DISA is no inheritance: a product-level rule simply carries the same control and CCI as its requirement-level rule.
 
 This needs O15 settled, because product-level rules will live in other repositories than their requirement-level parents.

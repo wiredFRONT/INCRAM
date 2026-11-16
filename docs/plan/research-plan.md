@@ -1,6 +1,6 @@
 # Work plan
 
-Status: revised 2026-11-12 after research runs R1 and R2. The ledger wins where they differ.
+Status: SUPERSEDED 2026-11-16 by `build-plan.md`. Kept for its method and rules. The pass list below is history.
 
 ## Method
 Read every relevant source from its primary source, record each in the same template, then compare.

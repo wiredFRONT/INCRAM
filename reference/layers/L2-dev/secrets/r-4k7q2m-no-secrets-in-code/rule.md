@@ -127,7 +127,7 @@ UPSTREAM. Read from the official files pinned in `registry/sources.yaml` on 2026
 
 INCRAM: The STIG's CAT I and this rule's CAT I agree. The STIG still cites the Rev 4 CCI while the control text used here is Rev 5, so both CCIs are carried. CCI-000202 and CCI-000203 (access scripts, function keys) map to the same control in Rev 4 and are not carried, because no STIG rule read so far cites them for this requirement.
 
-INCRAM: A new CVE reaches this rule through its weakness: when a CVE record names CWE-798, CWE-259 or CWE-321, this rule's check and fixtures are reviewed against it.
+INCRAM: A CVE reaches this rule through its weakness. The CWE list names example CVEs under CWE-798, CWE-259 and CWE-321; those are the verified join. A CVE record itself often names no weakness (the one sampled, CVE-2022-29964, carries none), so the CVE record alone cannot be relied on to route a new CVE here.
 
 ## Rot guards
 
