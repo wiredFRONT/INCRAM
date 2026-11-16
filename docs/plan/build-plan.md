@@ -1,6 +1,6 @@
 # INCRAM and MCPL: build plan
 
-Status: PROPOSED 2026-11-16, for Jesse's review. It replaces the pass list in `research-plan.md`. The ledger wins where they differ. Nothing in this plan changes a decision; where the research argues against a decision, the plan says so and leaves it to Jesse.
+Status: PROPOSED 2026-11-16, for Jesse's review. Section 13 evaluates an external review received the same day; section 14 records what Jesse's own three products change. It replaces the pass list in `research-plan.md`. The ledger wins where they differ. Nothing in this plan changes a decision; where the research argues against a decision, the plan says so and leaves it to Jesse.
 
 How to read it: each phase has a goal, what gets built, an exit test a machine can run, the research it rests on, and the rulings it needs. Work proceeds one increment and one decision per pass.
 
@@ -170,3 +170,29 @@ Consulting and training products (D45), pricing and limits (L5), legal review (L
 - No rule is `accepted` without passing all checks and a recorded second-model check.
 - Every claim about an upstream is read from the owner's own file and pinned, or marked unverified.
 - A decision is Jesse's. Research that argues against one goes in the ledger as a finding, never as an edit.
+
+## 13. External review 1, evaluated (2026-11-16)
+
+Another AI reviewed this plan and made six recommendations (`../research/reviews/external-review-1.md`). Each is judged here against the research and against what is actually built. Nothing below is accepted until Jesse rules.
+
+| # | Recommendation | Verdict | What is taken | What is not, and why |
+|---|---|---|---|---|
+| 1 | Two time dimensions on everything ingested: when the authority says it applies, and when INCRAM read it | Accept the principle | Every pinned source already carries `published` and `read`. Add the same pair to every rule link, and commit a state file per polling run (Phase 3), so any past state is a git commit that can be checked out | A separate time-travelling database. Git already gives the history at commit granularity, and there is one rule. Revisit when there is a served database (Phase 5) |
+| 2 | Structural defence against injected instructions: upstream text is passed only as data, never as instructions | Accept the structural part | Upstream text travels only inside typed result fields, labelled as untrusted, never inside server instructions or tool descriptions. INCRAM already serves its own wording and not DISA prose, which removes most of the exposure | A local 9B model for "toxicity scoring" in front of every read. Injection is not toxicity; the evidence for small models is narrow (cross-check of R2); it adds a second probabilistic layer and a runtime dependency. Keep screening as a later, measured addition |
+| 3 | Bind an approval to a hash of exactly what was approved, and void it when the underlying rule changes | Accept, with a correction | The approval record carries a hash of the rule version, the pinned source hashes and the proposal. A change in any of them makes the approval stale. This goes into the assurance model (Phase 4) | "Irrefutable proof of a human act". A signature proves a key was used on a device, not that a person understood and agreed (cross-check of R2). Local PKI and hardware tokens do not fit a non-developer audience (D2); a passkey signing the hash is the candidate to evaluate. Sigstore signs software artifacts, not a person's approval |
+| 4 | The AI never writes the enforcement script; it maps a requirement to a declared structure and tested code produces the script | Accept the principle | It is already the design: a rule's check is tested code, the AI's proposal is validated by a schema and guards, and "What to say" is guidance, never an executable fix. Make it a stated rule: no generated script is ever served as a fix | A compiler from a policy language to per-stack scripts, now. That is Phase 6 scope at the earliest. Cedar is an authorization language, not a compliance compiler. "Mathematically verifiable" overstates what unit tests give |
+| 5 | Use the six portable skill header fields as pointers and fetch the full join at run time from an in-process columnar engine | Accept the pointer; reject the engine for now | A rule delivered as a skill carries its ID; the MCP server returns the control, CCI, STIG and weakness chain on request. This also settles part of O8 | Arrow or DataFusion. The whole ASD STIG is 286 rules and the full chain for one rule is a few hundred bytes. No measured problem exists. The storage engine is chosen in Phase 5 from measurement |
+| 6 | When a CVE arrives with no weakness, have a model assign one offline and store it flagged as synthetic | Accept in part | Enrichment runs offline, never at request time, and every derived mapping is flagged as derived and never labelled UPSTREAM | Doing it before checking whether an official enrichment already supplies the weakness (to be verified first). Model-stated probabilities are not calibrated, so a derived mapping is a candidate for review, never a basis for a CAT I status. Reading exploit code is not needed for a weakness class and adds risk |
+
+Net effect on the plan: Phase 3 gains the state-file history, the data-only rule for upstream text and the offline enrichment step. Phase 4 gains the hash-bound approval. Phase 1 gains the stated rule that no generated script is served as a fix. No phase is reordered.
+
+## 14. What Jesse's own three products change (2026-11-16)
+
+Devagotchi, Vaultix and Nomen are three working installations of the same idea. A first comparison of their AI-facing surfaces is held in the private project (`claude/installations-comparison.md`), because one of the three repositories is private. What it changes here:
+
+1. Phase 4 starts from the installations, not from the specifications. MCPL's core is what the three already share; each difference is aligned to one standard or kept as a named route.
+2. Six practices are already common to all three and become MCPL's stated core: authored guidance for the AI; a secret never passes through the AI; the human step happens on something the product owns, reached by a link; the AI is told what to do next; one implementation for people and for AI; identity from the credential, never from what the AI says.
+3. Three pieces are lifted from an installation instead of designed again: serving both MCP eras (from Nomen), the approval request record (from Devagotchi), and the rule for when something may be raised unasked (from Devagotchi).
+4. The workflows extension has three real inputs to reconcile before it is compared with SCXML.
+5. The invented firewall example is replaced by the three products as worked cases, each with a conformance table and an INCRAM profile.
+6. "A secret never passes through the AI" is common to all three and is INCRAM rule `r-4k7q2m` at proposal time: the first rule with three installations behind it.
