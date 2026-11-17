@@ -67,6 +67,7 @@ Last updated 2026-11-16. This ledger is authoritative where it differs from any 
 |---|---|---|
 | R1 | Stigops AI umbrella baseline sources | DONE 2026-11-12. Text in docs/research. Cross-checked by Codex 2026-11-13: of ten load-bearing claims, 6 consistent, 3 divergent, 1 could not be verified |
 | R2 | MCPL AI interaction specs crosswalk (14 specs, crosswalk table, host matrix, evidence review) | DONE 2026-11-12. Text in docs/research. Cross-checked by Codex 2026-11-13: of ten load-bearing claims, 6 consistent, 3 divergent, 1 could not be verified |
+| R3 | Lifecycle, supersession, composition, freshness and AI rule practices (six threads and a synthesis), run in an external tool | Cover summary received 2026-11-16 and saved as received. UNVERIFIED: the note files and their source URLs are not in the repository yet |
 
 ## Research corrections awaiting Jesse (R2). His decisions above are unchanged until he rules.
 | Affects | What the research found | Proposed adjustment |

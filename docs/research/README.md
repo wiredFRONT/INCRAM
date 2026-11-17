@@ -25,3 +25,9 @@ The findings that change the plan are summarized in `../decisions/ledger.md`.
 - `cross-check/codex-1-run1-partial.md`: first run, where the reviewer could not read the repository files.
 - `cross-check/brief-2-R1.md`, `cross-check/codex-2-R1.md`: Codex review of R1, 2026-11-13. Ten load-bearing claims checked online: 6 consistent, 3 divergent, 1 could not be verified. The divergences are listed in the ledger for a ruling.
 - `cross-check/brief-3-R2.md`, `cross-check/codex-3-R2.md`: Codex review of R2, 2026-11-13. Ten load-bearing claims checked online: 6 consistent, 3 divergent, 1 could not be verified. Listed in the ledger for a ruling.
+
+## R3 (in progress)
+
+- `R3-prompt.md`: the prompt for a third run, on lifecycle, supersession, composition, freshness and AI rule practices.
+- `R3-summary-as-received.md`: the cover summary returned by an external research tool. Unverified: the seven note files and their source URLs have not been received.
+- `R3-first-hand-notes.md`: what in that summary has been checked against files already pinned here.
